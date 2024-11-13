@@ -1,7 +1,11 @@
 
 
 --[[ 
-you can change the path to the audios to your own if you want
+you can change the path to the audios to your own if you want.
+
+To download the audios you can either download them from the github or 
+
+https://www.mediafire.com/folder/ve997dq7rdpdw/Audios
 
 ]]
 
