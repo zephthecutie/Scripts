@@ -7,6 +7,8 @@ To download the audios you can either download them from the github or
 
 https://www.mediafire.com/folder/ve997dq7rdpdw/Audios
 
+You may need mediafire premium to bulk download, if you dont then just download the files 1 by 1 and create a new folder in your workspace called Audios
+
 ]]
 
 local is = game:GetService("UserInputService")
