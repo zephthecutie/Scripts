@@ -10,39 +10,31 @@ https://www.mediafire.com/folder/ve997dq7rdpdw/Audios
 You may need mediafire premium to bulk download, if you dont then just download the files 1 by 1 and create a new folder in your workspace called Audios
 
 ]]
-
 local is = game:GetService("UserInputService")
 
-
-local keySound = getcustomasset("Audios/key.mp3")
-local spacebarSound = getcustomasset("Audios/sb.mp3")
-local escapeSound = getcustomasset("Audios/esc.mp3")
-local backspaceSound = getcustomasset("Audios/bs.mp3")
-local shiftSound = getcustomasset("Audios/shift.mp3")
-
-local sounds = {
-    A = keySound, B = keySound, C = keySound, D = keySound, E = keySound,
-    F = keySound, G = keySound, H = keySound, I = keySound, J = keySound,
-    K = keySound, L = keySound, M = keySound, N = keySound, O = keySound,
-    P = keySound, Q = keySound, R = keySound, S = keySound, T = keySound,
-    U = keySound, V = keySound, W = keySound, X = keySound, Y = keySound, Z = keySound,
-    Space = spacebarSound,
-    Escape = escapeSound,
-    Backspace = backspaceSound,
-    LeftShift = shiftSound,
-    RightShift = shiftSound
+local soundAssets = {
+    key = getcustomasset("Audios/key.mp3"),
+    spacebar = getcustomasset("Audios/sb.mp3"),
+    escape = getcustomasset("Audios/esc.mp3"),
+    backspace = getcustomasset("Audios/bs.mp3"),
+    shift = getcustomasset("Audios/shift.mp3")
 }
+
+local keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", 
+              "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Zero"}
+local sounds = {Space = soundAssets.spacebar, Escape = soundAssets.escape, Backspace = soundAssets.backspace, LeftShift = soundAssets.shift, RightShift = soundAssets.shift}
+
+for _, key in ipairs(keys) do
+    sounds[key] = soundAssets.key
+end
 
 is.InputBegan:Connect(function(input)
     local soundAsset = sounds[input.KeyCode.Name]
     if soundAsset then
-     local soundInstance = Instance.new("Sound")
-     soundInstance.SoundId = soundAsset
-     soundInstance.Parent = workspace
-     soundInstance:Play()
-        
-    soundInstance.Ended:Connect(function()
-    soundInstance:Destroy()
-        end)
+        local sound = Instance.new("Sound")
+        sound.SoundId = soundAsset
+        sound.Parent = workspace
+        sound:Play()
+        sound.Ended:Connect(function() sound:Destroy() end)
     end
 end)
